@@ -9,7 +9,7 @@ import modelo.data.dao.EstudianteDAO;
 import org.jooq.DSLContext;
 
 public class EstudianteController {
-    public static boolean registrarEstudiante(String nombre, String rut, String matricula, String codigoCarrera) throws ClassNotFoundException{
+    public static boolean agregarEstudiante(String nombre, String rut, String matricula, String codigoCarrera) throws ClassNotFoundException{
         DSLContext query = DBGenerator.conectarBD("Intranet");
         if(!EstudianteDAO.validarExistenciaEstudiante(query,"rut",rut)){
             Carrera carrera =CarreraDAO.buscarCarrera(query,codigoCarrera);

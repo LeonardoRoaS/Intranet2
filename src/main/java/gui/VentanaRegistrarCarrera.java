@@ -1,4 +1,6 @@
 package gui;
+import controller.CarreraController;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
@@ -57,10 +59,33 @@ public class VentanaRegistrarCarrera extends Ventana {
         this.add(this.campoSemestres);
     }
 
+    private boolean agregarCarrera() throws ClassNotFoundException {
+        if(this.campoCodigoCarrera.getText().length()==0 || this.campoNombre.getText().length()==0 || this.campoSemestres.getText().length()==0){
+            return false;
+        }
+        else{
+            return CarreraController.agregarCarrera(this.campoNombre.getText(),this.campoCodigoCarrera.getText(),Integer.parseInt(this.campoSemestres.getText()));
+
+        }
+    }
+
     // ACCIONES DE LOS BOTONES
 
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() == this.botonRegistrar) {
+            try {
+                if(agregarCarrera()) {
+                    JOptionPane.showMessageDialog(this,"Carrera registrada correctamente");
+                    VentanaBienvenida ventanaBienvenida = new VentanaBienvenida();
+                    this.dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"Carrera ya ingresada o datos incorrectos");
+                }
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        }
         if (e.getSource() == this.botonCancelar){
             VentanaBienvenida ventanaBienvenida = new VentanaBienvenida();
             this.dispose();

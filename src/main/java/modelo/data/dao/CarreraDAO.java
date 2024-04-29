@@ -20,6 +20,8 @@ public class CarreraDAO {
                 .values(carrera.getNombreCarrera(),carrera.getCodigoCarrera(),carrera.getnSemestres())
                 .execute();
     }
+
+
     public static boolean validarExistenciaCarrera(DSLContext query,String columnaTabla, Object dato){
         Result resultados = query.select().from(DSL.table("Carrera")).where(DSL.field(columnaTabla).eq(dato)).fetch();
         if(resultados.size()>=1){
@@ -33,8 +35,8 @@ public class CarreraDAO {
         Result resultados= (Result) buscarCarrera(query,"codigo",dato);
         String codigoCarrera = (String) resultados.getValue(0,"codigo");
         String nombreCarrera = (String) resultados.getValue(0,"nombre_carrera");
-        int cantidadSemestres = (int) resultados.getValue(0,"cantidad_semestres");
-        return new Carrera(nombreCarrera,codigoCarrera,cantidadSemestres);
+        int nSemestres = (int) resultados.getValue(0,"cantidad_semestres");
+        return new Carrera(nombreCarrera,codigoCarrera,nSemestres);
     }
 
     public static List buscarCarrera(DSLContext query, String columnaTabla, Object dato){

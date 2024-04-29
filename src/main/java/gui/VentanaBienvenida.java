@@ -64,9 +64,23 @@ public class VentanaBienvenida extends Ventana{
         }
 
         //ACCION BOTON REGISTRAR ESTUDIANTE
-
+        if(e.getSource() == this.botonRegistrarEstudiante){
+            try {
+                VentanaRegistrarEstudiante ventanaRegistrarEstudiante = new VentanaRegistrarEstudiante();
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
+            this.dispose();
+        }
         //ACCION BOTON BUSCAR ESTUDIANTE
-
+        if(e.getSource() == this.botonBuscarEstudiante){
+            try {
+                VentanaBuscarEstudiante ventanaBuscarEstudiante = new VentanaBuscarEstudiante();
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
+            this.dispose();
+        }
         //ACCION BOTON SALIR
         if(e.getSource() == this.botonSalida){
             this.dispose();
